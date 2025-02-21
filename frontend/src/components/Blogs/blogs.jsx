@@ -12,7 +12,7 @@ export default function BlogsView() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/blog/api/`)
+      .get(`https://testitall.pythonanywhere.com/blog/api/`)
       .then((res) => {
         setBlog(res.data);
       })

@@ -14,7 +14,7 @@ export default function CategoryBlog() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/blog/api/cat/${blogCategory}`)
+      .get(`https://testitall.pythonanywhere.con/blog/api/cat/${blogCategory}`)
       .then((res) => {
         setBlog(res.data);
       })

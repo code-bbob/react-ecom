@@ -14,7 +14,7 @@ import HeaderBlog from './components/Blogs/blogHeader';
 import BlogsView from './components/Blogs/blogs';
 import SingleBlog from './components/Blogs/singleblog';
 import CategoryBlog from './components/Blogs/catblog';
-import BlogPost from './components/Blogs/blogPost';
+import BlogPost from './components/Blogs/BlogPost';
 function App() {
   const { isAuthenticated } = useSelector((state) => state.root);
   return (

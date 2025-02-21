@@ -12,7 +12,7 @@ export default function SingleBlog() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/blog/api/${blogId}`)
+      .get(`https://testitall.pythonanywhere.com/blog/api/${blogId}`)
       .then((res) => {
         setBlog(res.data);
         console.log('lololololololololo',res.data);
