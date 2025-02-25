@@ -212,7 +212,7 @@ class GoogleCallbackView(APIView):
             refresh = RefreshToken.for_user(user)
             access = refresh.access_token  # Access token is obtained from the refresh token
 
-            redirect_url = f"http://localhost:5173/google/callback?access={access}&refresh={refresh}"
+            redirect_url = f"{settings.FRONTEND_URL}auth/callback?access={access}&refresh={refresh}"
             return HttpResponseRedirect(redirect_url)
 
             # return Response({"access": str(access), "refresh": str(refresh)})

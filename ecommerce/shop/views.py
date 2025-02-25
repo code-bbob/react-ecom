@@ -38,19 +38,18 @@ class BrandSearch(generics.ListAPIView):
     search_fields = ['brandName']
     ordering_fields = ['price']
 
-class ProductSearch(generics.ListAPIView):
-    serializer_class = ProductSerializer
+class ProductSearch(APIView):
+    
+    def get(self,request,id):
+        try:
+            product = Product.objects.get(pk=id)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializer = ProductSerializer(product,context={"request": request})
+        return Response(serializer.data)
 
-    def get_queryset(self):
-        # Retrieve the 'id' query parameter from the request
-        id = self.kwargs.get('id')
 
-        # Filter the queryset based on the 'id' parameter
-        if id:
-            queryset = Product.objects.filter(product_id=id)
         
-        return queryset
-
 
 class CatSearch(generics.ListAPIView):
     serializer_class = ProductSerializer
@@ -59,9 +58,11 @@ class CatSearch(generics.ListAPIView):
 
     def get_queryset(self):
         cat = self.kwargs.get('name')
+        print(cat)
 
         if cat:
             queryset = Product.objects.filter(category__iexact=cat)
+            print(queryset)
     
         return queryset
     

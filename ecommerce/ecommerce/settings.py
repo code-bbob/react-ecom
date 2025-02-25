@@ -148,9 +148,13 @@ MEDIA_URL = 'media/'
 AUTH_USER_MODEL = 'userauth.User'
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",  
+#     "http://localhost:3000",  
+
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_CREDENTIALS = True
 
 
 REST_FRAMEWORK = {
@@ -191,7 +195,7 @@ EMAIL_USE_TLS = True
 GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID')
 GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET')
 BASE_URL = "http://localhost:8000"  # Your backend URL
-FRONTEND_URL = "http://localhost:5173/"  # Your frontend URL
+FRONTEND_URL = "http://localhost:3000/"  # Your frontend URL
 
 SITE_ID = 1
 

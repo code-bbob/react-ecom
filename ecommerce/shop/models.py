@@ -17,10 +17,6 @@ class Product(models.Model):
     description= RichTextField()
     published_date = models.DateField(default=timezone.now)
     
-    def update_rating(self):
-        avg_rating = self.ratings.aggregate(models.Avg('rating'))['rating__avg']
-        self.rating = round(avg_rating, 1) if avg_rating is not None else 0
-        self.save()
 
 
     def __str__(self):
@@ -35,13 +31,14 @@ class Rating(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.IntegerField(default=0, choices=[(i, str(i)) for i in range(1, 6)])
+    comment = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(upload_to='shop/images', blank=True, null=True)
 
     class Meta:
         unique_together = ('product', 'user')  # Ensure each user can only rate a product once
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.product.update_rating()  # Update the product's rating after a new rating is added
 
 class Comment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

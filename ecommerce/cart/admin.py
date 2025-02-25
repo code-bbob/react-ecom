@@ -1,6 +1,6 @@
 # admin.py (Django example)
 from django.contrib import admin
-from .models import OrderItem, Order, Delivery
+from .models import OrderItem, Order, Delivery,Cart
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
@@ -13,4 +13,5 @@ class DeliveryItemInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline,DeliveryItemInline]
 
-admin.site.register(Order, OrderAdmin,)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(Cart)

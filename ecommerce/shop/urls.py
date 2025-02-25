@@ -11,7 +11,7 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('api/', views.GetProduct.as_view(), name='api'),
     path('api/search', views.ApiSearch.as_view(), name='search'),
-    path('api/<uuid:id>', views.ProductSearch.as_view(), name='about_product'),
+    path('api/<uuid:id>/', views.ProductSearch.as_view(), name='about_product'),
     path('api/catsearch/<str:name>', views.CatSearch.as_view(), name='catsearch'),
     path('api/subcatsearch', views.SubcatSearch.as_view(), name='subcatsearch'),
     path('api/catsearch/<str:catname>/<str:brandname>', views.CatBrandSearch.as_view(), name='catbrandsearch'),

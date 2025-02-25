@@ -38,3 +38,15 @@ class Delivery(models.Model):
 
     def __str__(self):
         return f"Delivery for {self.order.user}"
+    
+class Cart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='cart', on_delete=models.CASCADE)
+    product = models.ForeignKey('shop.Product', related_name='cart', on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)  # Default to 1, but can be adjusted
+    price = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product}"
+
+    class Meta:
+        unique_together = ['user', 'product']
